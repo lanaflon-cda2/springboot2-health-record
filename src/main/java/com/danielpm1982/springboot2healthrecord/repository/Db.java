@@ -1,7 +1,9 @@
 package com.danielpm1982.springboot2healthrecord.repository;
 import com.danielpm1982.springboot2healthrecord.domain.Person;
+import org.springframework.stereotype.Component;
 import java.util.List;
 
+@Component
 public class Db {
     private List<Person> personList;
     public Db(List<Person> personList) {
