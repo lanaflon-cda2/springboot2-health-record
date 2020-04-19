@@ -10,11 +10,8 @@ public class Springboot2HealthRecordApplication {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Springboot2HealthRecordApplication.class, args);
         ProfessionalController professionalController = (ProfessionalController) ctx.getBean("professionalController");
-        professionalController.addProfessionalBootstrapDataLoad();
         professionalController.showAllProfessionals();
         PatientController patientController = (PatientController) ctx.getBean("patientController");
-        patientController.addPatientBootstrapDataLoad();
-        patientController.addConsultationBootstrapDataLoad();
         patientController.showPatient(194878L);
         patientController.showAllPatients();
     }

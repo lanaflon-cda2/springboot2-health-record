@@ -2,6 +2,7 @@ package com.danielpm1982.springboot2healthrecord.controller;
 import com.danielpm1982.springboot2healthrecord.configAndBootstrapDataLoad.ProfessionalLoad;
 import com.danielpm1982.springboot2healthrecord.service.ProfessionalServiceInterface;
 import org.springframework.stereotype.Controller;
+import javax.annotation.PostConstruct;
 
 @Controller
 public class ProfessionalController {
@@ -11,10 +12,11 @@ public class ProfessionalController {
         this.professionalServiceInterface = professionalServiceInterface;
         this.professionalLoad = professionalLoad;
     }
+    @PostConstruct
     public void addProfessionalBootstrapDataLoad(){
-        System.out.println("Adding professionals:");
+        System.out.println("Bootstraping data: adding professionals...");
         professionalLoad.getProfessionalList().forEach(x->professionalServiceInterface.addProfessional(x));
-        System.out.println("Added Successfully !");
+        System.out.println("Professionals added successfully !");
     }
     public void showAllProfessionals(){
         System.out.println("Showing all professionals:");

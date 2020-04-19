@@ -3,6 +3,7 @@ import com.danielpm1982.springboot2healthrecord.configAndBootstrapDataLoad.Consu
 import com.danielpm1982.springboot2healthrecord.configAndBootstrapDataLoad.PatientLoad;
 import com.danielpm1982.springboot2healthrecord.service.PatientServiceInterface;
 import org.springframework.stereotype.Controller;
+import javax.annotation.PostConstruct;
 
 @Controller
 public class PatientController {
@@ -14,20 +15,20 @@ public class PatientController {
         this.patientLoad = patientLoad;
         this.consultationLoad = consultationLoad;
     }
+    @PostConstruct
     public void addPatientBootstrapDataLoad(){
-        System.out.println("Adding patients:");
+        System.out.println("Bootstraping data: adding patients...");
         patientLoad.getPatientList().forEach(x->patientServiceInterface.addPatient(x));
-        System.out.println("Added Successfully !");
-        System.out.println("Showing all patients:");
-        patientServiceInterface.getAllPatients().forEach(System.out::println);
+        System.out.println("Patients added successfully !");
     }
+    @PostConstruct
     public void addConsultationBootstrapDataLoad(){
-        System.out.println("Adding consultations:");
+        System.out.println("Bootstraping data: adding consultations...");
         consultationLoad.getConsultationMap().forEach((x,y)->patientServiceInterface.addPatientRecordConsultation(x,y));
-        System.out.println("Added Successfully !");
+        System.out.println("Consultations added successfully !");
     }
     public void showPatient(Long id){
-        System.out.println("Showing Patient id = "+id+":");
+        System.out.println("Showing patient id = "+id+":");
         System.out.println(patientServiceInterface.getPatient(id));
     }
     public void showAllPatients(){
