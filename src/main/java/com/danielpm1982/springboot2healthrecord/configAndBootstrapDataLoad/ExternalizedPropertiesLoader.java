@@ -9,9 +9,9 @@ import java.util.List;
 
 @Component
 @PropertySources({
-    @PropertySource("patient.properties"),
-    @PropertySource("professional.properties"),
-    @PropertySource("consultation.properties")
+    @PropertySource(value = "patient-${spring.profiles.active}.properties", ignoreResourceNotFound = true),
+    @PropertySource(value = "professional-${spring.profiles.active}.properties", ignoreResourceNotFound = true),
+    @PropertySource(value = "consultation-${spring.profiles.active}.properties", ignoreResourceNotFound = true)
 })
 public class ExternalizedPropertiesLoader {
     @Value(value="${patient1}")
