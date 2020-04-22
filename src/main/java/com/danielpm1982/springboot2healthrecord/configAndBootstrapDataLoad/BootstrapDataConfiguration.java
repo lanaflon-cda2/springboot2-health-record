@@ -3,7 +3,6 @@ import com.danielpm1982.springboot2healthrecord.domain.Consultation;
 import com.danielpm1982.springboot2healthrecord.domain.Patient;
 import com.danielpm1982.springboot2healthrecord.domain.PatientRecord;
 import com.danielpm1982.springboot2healthrecord.domain.Professional;
-import com.danielpm1982.springboot2healthrecord.service.ProfessionalServiceInterface;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -14,8 +13,10 @@ import java.util.*;
 @Configuration
 public class BootstrapDataConfiguration {
     private ExternalizedPropertiesLoader externalizedPropertiesLoader;
-    public BootstrapDataConfiguration(ExternalizedPropertiesLoader externalizedPropertiesLoader, ProfessionalServiceInterface professionalServiceInterface) {
+    private ExternalizedPropertiesEnvironmentLoader externalizedPropertiesEnvironmentLoader;
+    public BootstrapDataConfiguration(ExternalizedPropertiesLoader externalizedPropertiesLoader, ExternalizedPropertiesEnvironmentLoader externalizedPropertiesEnvironmentLoader) {
         this.externalizedPropertiesLoader = externalizedPropertiesLoader;
+        this.externalizedPropertiesEnvironmentLoader = externalizedPropertiesEnvironmentLoader;
     }
     @Scope("singleton")
     @Bean
@@ -55,5 +56,15 @@ public class BootstrapDataConfiguration {
             }
         }
         return consultationMap;
+    }
+    @Scope("singleton")
+    @Bean(name="hospitalName")
+    public String hospitalNameSetFromExternalEnvData(){
+        return externalizedPropertiesEnvironmentLoader.getEnvironmentDataMap().get("hospitalName");
+    }
+    @Scope("singleton")
+    @Bean(name="userName")
+    public String userNameSetFromExternalEnvData(){
+        return externalizedPropertiesEnvironmentLoader.getEnvironmentDataMap().get("userName");
     }
 }
