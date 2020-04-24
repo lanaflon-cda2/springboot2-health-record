@@ -1,0 +1,10 @@
+#This is just a structured mock statement for showing how to externalize Spring properties using YAML files
+spring:
+  profiles: en
+policy:
+  statement: "This is a policy general statement for this Hospital"
+---
+spring:
+  profiles: ptbr
+policy:
+  statement: "Esta é uma declaração geral da política para este hospital"

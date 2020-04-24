@@ -27,5 +27,9 @@ public class Springboot2HealthRecordApplication {
         PatientController patientController = (PatientController) ctx.getBean("patientController");
         patientController.showPatient(194878L);
         patientController.showAllPatients();
+
+        //showing data externalized to YAML files
+        String policyStatement = (String) ctx.getBean("policyStatement");
+        System.out.println("General Policy:\n"+policyStatement);
     }
 }
